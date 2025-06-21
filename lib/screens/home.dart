@@ -1,3 +1,4 @@
+import 'package:carrot_market_app/widgets/modal/more_bottom.dart';
 import 'package:flutter/material.dart';
 
 final List<BottomNavigationBarItem> tabs = <BottomNavigationBarItem>[
@@ -55,7 +56,19 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search)),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                backgroundColor: Colors.grey[100],
+                builder: (context) {
+                  return MoreBottomModal(
+                    onCancle: () {
+                      Navigator.pop(context);
+                    },
+                  );
+                },
+              );
+            },
             icon: Icon(Icons.notifications_none_outlined),
           ),
         ],
