@@ -1,4 +1,3 @@
-import 'package:carrot_market_app/screens/auth/regist.dart';
 import 'package:flutter/material.dart';
 
 class IntroPage extends StatelessWidget {
@@ -18,12 +17,15 @@ class IntroPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const RegistPage()),
-                );
+                Navigator.pushNamed(context, '/regist');
               },
               child: const Text('사용하러 가기'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/feed/1');
+              },
+              child: const Text('물건 사러 가기'),
             ),
           ],
         ),
