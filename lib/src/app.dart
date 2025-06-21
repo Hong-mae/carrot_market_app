@@ -10,6 +10,56 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        primaryColor: const Color(0xffff6f0f),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
+        ),
+        buttonTheme: const ButtonThemeData(buttonColor: Color(0xffff6f0f)),
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(fontSize: 18, fontFamily: 'Noto Sans'),
+          bodyMedium: TextStyle(fontSize: 14, fontFamily: 'Noto Sans'),
+          labelLarge: TextStyle(
+            fontSize: 16,
+            fontFamily: 'Noto Sans',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xffff7e36),
+            padding: const EdgeInsets.symmetric(vertical: 22),
+            textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            foregroundColor: Colors.white,
+            minimumSize: const Size(double.infinity, 10),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: const Color(0xffff7e36),
+            textStyle: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          hintStyle: TextStyle(fontSize: 16, color: Colors.grey),
+          floatingLabelStyle: TextStyle(fontSize: 10),
+          contentPadding: EdgeInsets.all(10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Carrot Market',
       routes: {
@@ -17,7 +67,7 @@ class App extends StatelessWidget {
         '/intro': (context) => const IntroPage(),
         '/regist': (context) => const RegistPage(),
       },
-      initialRoute: '/',
+      initialRoute: '/intro',
     );
   }
 }
