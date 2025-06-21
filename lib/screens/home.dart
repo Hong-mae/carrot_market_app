@@ -1,4 +1,4 @@
-import 'package:carrot_market_app/widgets/modal/more_bottom.dart';
+import 'package:carrot_market_app/screens/feed/index.dart';
 import 'package:flutter/material.dart';
 
 final List<BottomNavigationBarItem> tabs = <BottomNavigationBarItem>[
@@ -25,7 +25,7 @@ final List<BottomNavigationBarItem> tabs = <BottomNavigationBarItem>[
 ];
 
 final List<Widget> tabItems = [
-  Center(child: Text('홈')),
+  const FeedIndex(),
   Center(child: Text('동네')),
   Center(child: Text('채팅')),
   Center(child: Text('나의 당근')),
@@ -50,29 +50,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: Text('내 동네'),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-          IconButton(
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                backgroundColor: Colors.grey[100],
-                builder: (context) {
-                  return MoreBottomModal(
-                    onCancle: () {
-                      Navigator.pop(context);
-                    },
-                  );
-                },
-              );
-            },
-            icon: Icon(Icons.notifications_none_outlined),
-          ),
-        ],
-      ),
       body: IndexedStack(index: _selectedIndex, children: tabItems),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.black,
