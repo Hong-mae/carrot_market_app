@@ -67,7 +67,7 @@ class App extends StatelessWidget {
         '/intro': (context) => const IntroPage(),
         '/regist': (context) => const RegistPage(),
       },
-      initialRoute: '/intro',
+      initialRoute: '/',
     );
   }
 }
