@@ -9,6 +9,8 @@ class UserModel extends Equatable {
   final String? name;
   final int? profile;
 
+  get profileUrl => "https://picsum.photos/200";
+
   const UserModel(this.id, this.name, this.profile);
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
