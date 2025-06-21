@@ -1,15 +1,36 @@
+import 'dart:math';
+
 import 'package:carrot_market_app/widgets/buttons/category_btn.dart';
 import 'package:carrot_market_app/widgets/listitems/feed_list_item.dart';
 import 'package:flutter/material.dart';
 
-class FeedIndex extends StatefulWidget {
-  const FeedIndex({super.key});
+class IndexPage extends StatefulWidget {
+  const IndexPage({super.key});
 
   @override
-  State<FeedIndex> createState() => _FeedIndexState();
+  State<IndexPage> createState() => _IndexPageState();
 }
 
-class _FeedIndexState extends State<FeedIndex> {
+class _IndexPageState extends State<IndexPage> {
+  List<Map<String, dynamic>> feeds = [
+    {'id': 1, 'title': '텀블러', 'content': '텀블러 팔아요', 'price': 500},
+    {'id': 2, 'title': '머그잔', 'content': '머그잔으로 텀블러 교환 원해요', 'price': 300},
+  ];
+
+  void addItem() {
+    final random = Random();
+    final newItem = {
+      'id': feeds.length + 1,
+      'title': '제목 ${random.nextInt(100)}',
+      'content': '내용 ${random.nextInt(100)}',
+      'price': 500 + random.nextInt(49500),
+    };
+
+    setState(() {
+      feeds.add(newItem);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,18 +63,19 @@ class _FeedIndexState extends State<FeedIndex> {
             ),
           ),
           Expanded(
-            child: ListView(
-              children: [
-                FeedListItem(),
-                FeedListItem(),
-                FeedListItem(),
-                FeedListItem(),
-                FeedListItem(),
-                FeedListItem(),
-              ],
+            child: ListView.builder(
+              itemCount: feeds.length,
+              itemBuilder: (context, index) {
+                final item = feeds[index];
+                return FeedListItem(item);
+              },
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: addItem,
+        child: Icon(Icons.add),
       ),
     );
   }

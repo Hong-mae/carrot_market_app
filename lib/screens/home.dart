@@ -25,7 +25,7 @@ final List<BottomNavigationBarItem> tabs = <BottomNavigationBarItem>[
 ];
 
 final List<Widget> tabItems = [
-  const FeedIndex(),
+  const IndexPage(),
   Center(child: Text('동네')),
   Center(child: Text('채팅')),
   Center(child: Text('나의 당근')),

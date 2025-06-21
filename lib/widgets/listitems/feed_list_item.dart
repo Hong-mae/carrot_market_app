@@ -1,14 +1,21 @@
+import 'package:carrot_market_app/screens/feed/edit.dart';
 import 'package:flutter/material.dart';
 
 const double _imgSize = 110;
 
 class FeedListItem extends StatelessWidget {
-  const FeedListItem({super.key});
+  final Map item;
+  const FeedListItem(this.item, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EditPage(item)),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Stack(
@@ -32,7 +39,7 @@ class FeedListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '판매 물건 제목',
+                          item['title'],
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(fontSize: 16),
                         ),
@@ -46,7 +53,7 @@ class FeedListItem extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          '물품 가격',
+                          item['price'].toString(),
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
