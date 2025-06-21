@@ -54,7 +54,6 @@ class _LoginPageState extends State<LoginPage> {
               controller: _phoneCtrl,
               keyboardType: TextInputType.phone,
             ),
-            const SizedBox(height: 8),
             LabelTextField(
               label: '비밀번호',
               hintText: '비밀번호를 입력해주세요.',

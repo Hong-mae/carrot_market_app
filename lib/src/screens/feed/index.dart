@@ -12,7 +12,7 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
-  int _currentPage = 1;
+  final int _currentPage = 1;
   final FeedController feedCtrl = Get.put(FeedController());
 
   @override
