@@ -1,8 +1,8 @@
-import 'dart:math';
-
-import 'package:carrot_market_app/widgets/buttons/category_btn.dart';
-import 'package:carrot_market_app/widgets/listitems/feed_list_item.dart';
+import 'package:carrot_market_app/src/controllers/feed_controller.dart';
+import 'package:carrot_market_app/src/widgets/buttons/category_btn.dart';
+import 'package:carrot_market_app/src/widgets/listitems/feed_list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
@@ -12,23 +12,13 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
-  List<Map<String, dynamic>> feeds = [
-    {'id': 1, 'title': '텀블러', 'content': '텀블러 팔아요', 'price': 500},
-    {'id': 2, 'title': '머그잔', 'content': '머그잔으로 텀블러 교환 원해요', 'price': 300},
-  ];
+  int _currentPage = 1;
+  final FeedController feedCtrl = Get.put(FeedController());
 
-  void addItem() {
-    final random = Random();
-    final newItem = {
-      'id': feeds.length + 1,
-      'title': '제목 ${random.nextInt(100)}',
-      'content': '내용 ${random.nextInt(100)}',
-      'price': 500 + random.nextInt(49500),
-    };
-
-    setState(() {
-      feeds.add(newItem);
-    });
+  @override
+  void initState() {
+    super.initState();
+    feedCtrl.feedIndex(_currentPage);
   }
 
   @override
@@ -63,19 +53,18 @@ class _IndexPageState extends State<IndexPage> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: feeds.length,
-              itemBuilder: (context, index) {
-                final item = feeds[index];
-                return FeedListItem(item);
-              },
+            child: Obx(
+              () => ListView.builder(
+                itemCount: feedCtrl.feeds.length,
+                itemBuilder: (context, index) {
+                  final item = feedCtrl.feeds[index];
+
+                  return FeedListItem(item);
+                },
+              ),
             ),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: addItem,
-        child: Icon(Icons.add),
       ),
     );
   }

@@ -1,7 +1,10 @@
+import 'package:carrot_market_app/src/controllers/feed_controller.dart';
+import 'package:carrot_market_app/src/models/feed/feed_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EditPage extends StatefulWidget {
-  final Map item;
+  final FeedModel item;
 
   const EditPage(this.item, {super.key});
 
@@ -10,24 +13,28 @@ class EditPage extends StatefulWidget {
 }
 
 class _EditPageState extends State<EditPage> {
+  final FeedController feedCtrl = Get.find<FeedController>();
   TextEditingController? titleCtrl;
   TextEditingController? priceCtrl;
 
   void _submit() {
-    setState(() {
-      widget.item['title'] = titleCtrl!.text;
-      widget.item['price'] =
-          int.tryParse(priceCtrl!.text) ?? widget.item['price'];
+    final updatedItem = FeedModel.fromJson({
+      'id': widget.item.id,
+      'title': titleCtrl!.text,
+      'content': widget.item.content,
+      'price': int.tryParse(priceCtrl!.text) ?? widget.item.price,
     });
 
-    Navigator.pop(context);
+    feedCtrl.updateData(updatedItem);
+
+    Get.back();
   }
 
   @override
   void initState() {
     super.initState();
-    titleCtrl = TextEditingController(text: widget.item['title']);
-    priceCtrl = TextEditingController(text: widget.item['price'].toString());
+    titleCtrl = TextEditingController(text: widget.item.title);
+    priceCtrl = TextEditingController(text: widget.item.price.toString());
   }
 
   @override

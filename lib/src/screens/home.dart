@@ -1,4 +1,4 @@
-import 'package:carrot_market_app/screens/feed/index.dart';
+import 'package:carrot_market_app/src/screens/feed/index.dart';
 import 'package:flutter/material.dart';
 
 final List<BottomNavigationBarItem> tabs = <BottomNavigationBarItem>[

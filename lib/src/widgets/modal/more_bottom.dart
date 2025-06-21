@@ -1,4 +1,4 @@
-import 'package:carrot_market_app/widgets/modal/confirm_modal.dart';
+import 'package:carrot_market_app/src/widgets/modal/confirm_modal.dart';
 import 'package:flutter/material.dart';
 
 class MoreBottomModal extends StatelessWidget {
